@@ -1,3 +1,13 @@
+//------------------------------------------------------------------------------
+// Name: Nayan Bhattacharyya
+// Course-Section: CS 310-01
+// Assignment: Assignment 1
+// Due date: 01/22/2020
+// Collaborators: NA
+// Resources: NA
+// Description: A program that converts binary to decimal and vice versa
+//------------------------------------------------------------------------------
+
 #include<iostream>
 #include<cmath>
 using namespace std;
@@ -9,16 +19,39 @@ long long inputBinary();
 
 int main()
 {
-		long long binary = inputBinary();
-		cout<<binary<<", "<<convertBinaryToDecimal(binary)<<endl;
+		char choice;
+		cout<<"Input choice for conversion: "<< endl <<"1 for binary to decimal, "
+				<<"2 for decimal to binary: ";
+		cin>>choice;
+		switch(choice)
+		{
+				case '1':
+				{
+						long long binary = inputBinary();
+						cout<<"The conversion for the binary number: "<<binary<<", is :"
+								<<convertBinaryToDecimal(binary)<<endl;
+						break;
+				}
+				case '2':
+				{
+						int decimal = 0;
+						cout<<"Input decimal number: ";
+						cin>>decimal;
+						cout<<"The conversion for the decimal number: "<<decimal<<", is :"
+								<<convertDecimalToBinary(decimal)<<endl;
+						break;
+				}
+				default:
+						cout<<"Invalid choice!";
+		}
 		return 0;
 }
 
 long long inputBinary()
 {
-		long long input, x;
+		long long static input, x;
 		int ar[10] = {0};
-		boolean inputNeeded = false;
+		bool inputNeeded = false;
 
 		cout<<"Input binary number: ";
 		cin>>input;
@@ -31,10 +64,14 @@ long long inputBinary()
 				{
 						cout<<"Please input valid binary number (0's and 1's)"<<endl;
 						inputNeeded = true;
+						break;
 				}
 				x/=10;
 		}
 		if(inputNeeded)
+		{
+				inputBinary();
+		}
 
 		return input;
 }
