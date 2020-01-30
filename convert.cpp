@@ -32,6 +32,7 @@ int main()
 		cout<<"Input choice for conversion: "<< endl <<"1 for binary to decimal, "
 				<<"2 for decimal to binary: ";
 		cin>>choice;
+		cout<<endl;
 		switch(choice)
 		{
 				case '1':
@@ -138,5 +139,3 @@ int convertBinaryToDecimal(long long n)
     }
     return decimalNumber;
 }
-
-//Function definition end
