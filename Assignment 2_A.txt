@@ -1,0 +1,14 @@
+addi $t1, $zero, 8192
+StartLoop: lw $t3, 0($t1) # Check if keyboard has input
+beq $zero, $t3, End
+
+addi $t2, $zero, 8196
+lw $t4, 0($t2) # Get Key board input
+lw $t5, 0($t2) # Get Key board input
+
+sub $t4, $t4, $t5 # find range
+
+addi $t6, $zero, 8200
+sw $t4, 0($t6) # Output the range of numbers
+j StartLoop
+End:
