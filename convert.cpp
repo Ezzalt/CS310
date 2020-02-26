@@ -7,15 +7,24 @@
 // Resources: NA
 // Description: A program that converts binary to decimal and vice versa
 //------------------------------------------------------------------------------
+//Header file inclusion
 
 #include<iostream>
 #include<cmath>
 using namespace std;
 
+//Header file Inclusion finish
+
+//Function declaration
+
 long long convertDecimalToBinary(int n);
 int convertBinaryToDecimal(long long n);
 int inputDecimal();
 long long inputBinary();
+
+//Function declaration end
+
+//main driver
 
 int main()
 {
@@ -23,6 +32,7 @@ int main()
 		cout<<"Input choice for conversion: "<< endl <<"1 for binary to decimal, "
 				<<"2 for decimal to binary: ";
 		cin>>choice;
+		cout<<endl;
 		switch(choice)
 		{
 				case '1':
@@ -47,6 +57,17 @@ int main()
 		return 0;
 }
 
+//main driver end
+
+
+//Function definitions
+//------------------------------------------------------------------------------
+// Function Name: inputBinary
+// incoming parameters: none 
+// outgoing parameters: long long input - A long number that holds the binary
+// value that has been checked for input
+// Description: A function that forces the user to input in binary(0's and 1's)
+//------------------------------------------------------------------------------
 long long inputBinary()
 {
 		long long static input, x;
@@ -76,6 +97,14 @@ long long inputBinary()
 		return input;
 }
 
+
+//------------------------------------------------------------------------------
+// Function Name: convertDecimalToBinary
+// incoming parameters: int n - An int that holds the decimal value 
+// outgoing parameters: long long binaryNumber - A long number that holds the 
+// binary value
+// Description: A function that converts decimal number to binary
+//------------------------------------------------------------------------------
 long long convertDecimalToBinary(int n)
 {
     long long binaryNumber = 0;
@@ -90,6 +119,14 @@ long long convertDecimalToBinary(int n)
     return binaryNumber;
 }
 
+//Function definitions
+//------------------------------------------------------------------------------
+// Function Name: convertBinaryToDecimal
+// incoming parameters: long long n - A long number that holds the binary value
+// outgoing parameters: int decimalNumber - An int that returns with decimal 
+// value 
+// Description: A function that converts binary number to decimal
+//------------------------------------------------------------------------------
 int convertBinaryToDecimal(long long n)
 {
     int decimalNumber = 0, i = 0, remainder;
