@@ -1,17 +1,28 @@
 addi $t1, $zero, 8192
 
+#StartLoop will take input values and subtract them from each other to find the range of values
 StartLoop: 
   lw $t3, 0($t1) # Check if input mem location has input
   beq $zero, $t3, End
 
   addi $t2, $zero, 8196
-  lw $t4, 0($t2) # Get input from memory for max value of range
-  lw $t5, 0($t2) # Get input from memory for min value of range
-
-  sub $t4, $t4, $t5 # find range
-
+  lw $t4, 0($t2) # Get input from memory for max value of range to $t4
+  lw $t5, 0($t2) # Get input from memory for min value of range to $t5
+  
+  #value might be negative if the input was min first max second
+  
+  slt $t3, $t4, $zero
+  bne $zero, $t3, CorrectPosition
+  
+  CorrectPosition:
+    addi $t3, $zero, $t4
+    addi $t5, $zero, $t4
+    addi $t4, $zero, $t3
+  
+  sub $t4, $t4, $t5 # find range by subtracting $t5 value from $t4 
+  
   addi $t6, $zero, 8200
-  sw $t4, 0($t6) # Output the range of numbers from min to max values
+  sw $t4, 0($t6) # Output the range of numbers from min to max values to save it to $t6
   j StartLoop
 
 End:
