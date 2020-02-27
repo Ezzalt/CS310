@@ -1,14 +1,17 @@
 addi $t1, $zero, 8192
-StartLoop: lw $t3, 0($t1) # Check if keyboard has input
-beq $zero, $t3, End
 
-addi $t2, $zero, 8196
-lw $t4, 0($t2) # Get Key board input
-lw $t5, 0($t2) # Get Key board input
+StartLoop: 
+  lw $t3, 0($t1) # Check if input mem location has input
+  beq $zero, $t3, End
 
-sub $t4, $t4, $t5 # find range
+  addi $t2, $zero, 8196
+  lw $t4, 0($t2) # Get input from memory for max value of range
+  lw $t5, 0($t2) # Get input from memory for min value of range
 
-addi $t6, $zero, 8200
-sw $t4, 0($t6) # Output the range of numbers
-j StartLoop
+  sub $t4, $t4, $t5 # find range
+
+  addi $t6, $zero, 8200
+  sw $t4, 0($t6) # Output the range of numbers from min to max values
+  j StartLoop
+
 End:
