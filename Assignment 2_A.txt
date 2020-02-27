@@ -11,14 +11,15 @@ StartLoop:
   
   #value might be negative if the input was min first max second
   
-  slt $t3, $t4, $zero
-  bne $zero, $t3, CorrectPosition
+  slt $t3, $t4, $t5
+  beq $zero, $t3, CorrectPosition
   
+   # swap $t4 and $t5
+    add $t3, $zero, $t5
+    add $t5, $zero, $t4
+    add $t4, $zero, $t3
+   
   CorrectPosition:
-    addi $t3, $zero, $t4
-    addi $t5, $zero, $t4
-    addi $t4, $zero, $t3
-  
   sub $t4, $t4, $t5 # find range by subtracting $t5 value from $t4 
   
   addi $t6, $zero, 8200
