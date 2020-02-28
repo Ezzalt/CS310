@@ -1,9 +1,20 @@
-addi $t1, $zero, 8192
+#-----------------------------------------------------------------------------
+# Name: Nayan Bhattacharyya
+# Course-Section: CS 310-01
+# Assignment: Assignment 2 (A)
+# Due date: 02/27/2020
+# Collaborators: NA
+# Resources: NA
+# Description: A program that finds the range between two input values
+#-----------------------------------------------------------------------------
+
+#Program start
+addi $t1, $zero, 8192 #Input ready value will be stored at $t1
 
 #StartLoop will take input values and subtract them from each other to find the range of values
 StartLoop: 
-  lw $t3, 0($t1) # Check if input mem location has input
-  beq $zero, $t3, End
+  lw $t3, 0($t1) # Check if input memory location has input
+  beq $zero, $t3, End #Branch to end of program 
 
   addi $t2, $zero, 8196
   lw $t4, 0($t2) # Get input from memory for max value of range to $t4
@@ -22,8 +33,9 @@ StartLoop:
   CorrectPosition:
   sub $t4, $t4, $t5 # find range by subtracting $t5 value from $t4 
   
-  addi $t6, $zero, 8200
-  sw $t4, 0($t6) # Output the range of numbers from min to max values to save it to $t6
-  j StartLoop
+  addi $t6, $zero, 8200 #Output memory location
+  sw $t4, 0($t6) # Output the range of numbers from min to max values to save it to location at $t6(8200)
+  j StartLoop #Jump back to start of loop
 
 End:
+#Program end
