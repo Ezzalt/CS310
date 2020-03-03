@@ -1,0 +1,59 @@
+#-----------------------------------------------------------------------------
+# Name: Nayan Bhattacharyya
+# Course-Section: CS 310-01
+# Assignment: Assignment 2 (B)
+# Due date: 02/27/2020
+# Collaborators: NA
+# Resources: Eucilidian Formula for division(repetitive subtraction)
+# Description: A program that gives the value of division of the two input values
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Register description:
+# $t0 - Input ready
+# $t1 - Counter for quotient
+# $t2 - Input get from keyboard
+# $t3 - Check register for comparison and loop control
+# $t4 - Input register for larger value
+# $t5 - Input register for smaller value
+# $t6 - Output register with memory value 8200
+#-----------------------------------------------------------------------------
+
+#Program start
+addi $t0, $zero, 8192 #Input ready value will be stored at $t1
+addi $t6, $zero, 8200 #Output memory location
+
+#StartLoop will take input values and subtract them from each other to find the range of values
+StartLoop: 
+  lw $t3, 0($t0) # Check if input memory location has input
+  beq $zero, $t3, End #Branch to end of program 
+
+  addi $t2, $zero, 8196
+  lw $t4, 0($t2) # Get input from memory for max value of range to $t4
+  lw $t5, 0($t2) # Get input from memory for min value of range to $t5
+  addi $t1, $zero, 0 #counter for quotient  
+ 
+  #Eucilidian formula needs to have crrect position of values in the registers
+  
+  slt $t3, $t4, $t5
+  beq $zero, $t3, CorrectPosition
+  
+   # swap $t4 and $t5
+    add $t3, $zero, $t5
+    add $t5, $zero, $t4
+    add $t4, $zero, $t3
+   
+  CorrectPosition:
+  
+  Repeater:
+     addi $t1, $t1, 1
+     sub $t4, $t4, $t5 # find range by subtracting $t5 value from $t4
+     slt $t3, $t4, $t5
+     beq $zero, $t3, Repeater
+     
+  sw $t1, 0($t6) # Output the quotient to location at $t6(8200)
+  sw $t4, 0($t6) # Output the remainder to location at $t6(8200)
+  j StartLoop #Jump back to start of loop
+
+End:
+#Program end
